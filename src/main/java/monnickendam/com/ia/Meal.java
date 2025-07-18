@@ -6,6 +6,7 @@ package monnickendam.com.ia;
 
 
 import java.io.Serializable;
+import java.util.LinkedList;
 
 /**
  *
@@ -22,6 +23,10 @@ public class Meal implements Serializable {
     private Double protein;
     private Double carbs;
     private Double fats;
+    
+    private String recipe;
+    private LinkedList<Ingredient> IngredientList;
+    
 
     public Meal(String name, String brand, String type, Double size, String sizeType) {
         this.name = name;
@@ -29,6 +34,8 @@ public class Meal implements Serializable {
         this.type = type;
         this.size = size;
         this.sizeType = sizeType;
+        this.IngredientList = new LinkedList<Ingredient>();
+        
     }
 
     public void setMacros(Double calories, Double protein, Double carbs, Double fats) {
@@ -36,6 +43,14 @@ public class Meal implements Serializable {
         this.protein = protein;
         this.carbs = carbs;
         this.fats = fats;
+    }
+    
+    public void setRecipe(String recipe) {
+        this.recipe = recipe;
+    }
+    
+    public void AddIngredient(Ingredient input) {
+        this.IngredientList.add(input);
     }
 
     public String getName() { return name; }
