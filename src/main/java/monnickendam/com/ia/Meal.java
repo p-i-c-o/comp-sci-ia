@@ -24,11 +24,14 @@ public class Meal implements Serializable {
     private Double carbs;
     private Double fats;
     
+    private Boolean hasRecipe;
+    
     private String recipe;
     private LinkedList<Ingredient> IngredientList;
     
 
     public Meal(String name, String brand, String type, Double size, String sizeType) {
+        this.hasRecipe = false;
         this.name = name;
         this.brand = brand;
         this.type = type;
@@ -46,6 +49,7 @@ public class Meal implements Serializable {
     }
     
     public void setRecipe(String recipe) {
+        this.hasRecipe = true;
         this.recipe = recipe;
     }
     
@@ -62,5 +66,6 @@ public class Meal implements Serializable {
     public Double getProtein() { return protein; }
     public Double getCarbs() { return carbs; }
     public Double getFats() { return fats; }
+    public Boolean getRecipeState() { return hasRecipe; }
 }
 

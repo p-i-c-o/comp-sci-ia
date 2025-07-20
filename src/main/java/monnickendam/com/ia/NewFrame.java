@@ -22,7 +22,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import java.io.ObjectOutputStream;
+import javax.swing.ButtonModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -37,6 +39,12 @@ public class NewFrame extends javax.swing.JFrame {
         initComponents();
         loadDatabaseFiles();
         SetIngredientTableHeaders();
+        String[] columnNames = {
+            "Name", "Brand", "Type", "Size", "", "Calories", "Protein", "Carbs", "Fats", "Recipe?"
+        };
+
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+        mealsTable.setModel(model);
         
     }
     
@@ -52,11 +60,10 @@ public class NewFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         Today = new javax.swing.JPanel();
         Meals = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        mealsTable = new javax.swing.JTable();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
@@ -64,6 +71,9 @@ public class NewFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         mealSearch = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        mealsTable = new javax.swing.JTable();
         Stats = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -163,26 +173,16 @@ public class NewFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Today", Today);
 
-        mealsTable.setAutoCreateRowSorter(true);
-        mealsTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane2.setViewportView(mealsTable);
-
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Meal");
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Snack");
 
+        buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("Drink");
 
+        buttonGroup1.add(jRadioButton4);
         jRadioButton4.setSelected(true);
         jRadioButton4.setText("All");
 
@@ -190,26 +190,50 @@ public class NewFrame extends javax.swing.JFrame {
 
         jLabel5.setText("Search");
 
+        jButton1.setText("Temp Refresh");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        mealsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(mealsTable);
+
         javax.swing.GroupLayout MealsLayout = new javax.swing.GroupLayout(Meals);
         Meals.setLayout(MealsLayout);
         MealsLayout.setHorizontalGroup(
             MealsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
             .addGroup(MealsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mealSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(MealsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(MealsLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButton4)
+                        .addGap(142, 142, 142)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mealSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         MealsLayout.setVerticalGroup(
@@ -223,9 +247,11 @@ public class NewFrame extends javax.swing.JFrame {
                     .addComponent(jRadioButton4)
                     .addComponent(jLabel2)
                     .addComponent(mealSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Meals", Meals);
@@ -770,7 +796,7 @@ public class NewFrame extends javax.swing.JFrame {
 
         jLabel53.setText("Quantity");
 
-        IngredientQuantityType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "ml", "tsp", "tbsp", "l", "g", "kg", "misc." }));
+        IngredientQuantityType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "ml", "tsp", "tbsp", "l", "g", "kg" }));
 
         IngredientTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -900,7 +926,7 @@ public class NewFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddToMealListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddToMealListButtonActionPerformed
-        AddToMealList();
+        AddToMealDB();
     }//GEN-LAST:event_AddToMealListButtonActionPerformed
 
     private void typeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeComboBoxActionPerformed
@@ -938,8 +964,6 @@ public class NewFrame extends javax.swing.JFrame {
         loadDatabaseFiles();
     }//GEN-LAST:event_RefreshListActionPerformed
 
-    // ALL BUTTON INTERACTIONS
-    
     private void CreateDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateDBActionPerformed
 
         // CREATE DATABSE
@@ -1022,6 +1046,10 @@ public class NewFrame extends javax.swing.JFrame {
     private void AddIngredientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddIngredientActionPerformed
         AddIngredientToTable();
     }//GEN-LAST:event_AddIngredientActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        RefreshMealTable();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // MY FUNCTIONS
     
@@ -1199,9 +1227,10 @@ public class NewFrame extends javax.swing.JFrame {
         LabelSnackCount.setText(String.valueOf(WorkingDB.getSnackCount()));
     }
     
-    private void AddToMealList() {
+    private void AddToMealDB() {
     try {
         if (!DBLoadedState) {
+            JOptionPane.showMessageDialog(this, "No database loaded, go to the Misc tab");
             return;
         }
         // Extract and parse values from the UI
@@ -1334,6 +1363,86 @@ public class NewFrame extends javax.swing.JFrame {
 
     }
     
+    private void RefreshMealTable() {
+       
+        
+        DefaultTableModel Table = (DefaultTableModel) mealsTable.getModel();
+        
+        Table.setRowCount(0);
+        
+        String textFilter = mealSearch.getText();
+        
+        
+        String filter = "All";
+        for (Meal meal : WorkingDB.getAllMeals()) {
+
+            String tempName = meal.getName();
+            String tempBrand = meal.getBrand();
+            String tempType = meal.getType();
+            Double tempSize = meal.getSize();
+            String tempSizeType = meal.getSizeType();
+            Double tempCalories = meal.getCalories();
+            Double tempProtein = meal.getProtein();
+            Double tempCarbs = meal.getCarbs();
+            Double tempFats = meal.getFats();
+            String tempRecipeState;
+
+            if (meal.getRecipeState()) {
+                tempRecipeState = "Yes";
+            } else {
+                tempRecipeState = "No";
+            }
+
+            if (jRadioButton1.isSelected()) {
+                filter = "Meal";
+            } else if (jRadioButton2.isSelected()) {
+                filter = "Snack";
+            } else if (jRadioButton3.isSelected()) {
+                filter = "Drink";
+            } else if (jRadioButton4.isSelected()) {
+                filter = "All";
+            }
+            
+            
+            if (textFilter.isEmpty() || tempName.toLowerCase().contains(textFilter.toLowerCase())) {
+                if (filter.equals("All") || tempType.equalsIgnoreCase(filter)) {
+                    Table.addRow(new Object[] {
+                        tempName, tempBrand, tempType, tempSize, tempSizeType,
+                        tempCalories, tempProtein, tempCarbs, tempFats, tempRecipeState
+                    });
+                }
+            }
+
+
+            
+
+
+                
+                
+
+        }
+        
+        
+        
+        
+    }
+    
+    private void setMealTableHeaders() {
+        TableColumnModel columnModel = mealsTable.getColumnModel();
+        columnModel.getColumn(0).setHeaderValue("Name");
+        columnModel.getColumn(1).setHeaderValue("Brand");
+        columnModel.getColumn(2).setHeaderValue("Type");
+        columnModel.getColumn(3).setHeaderValue("Size");
+        columnModel.getColumn(4).setHeaderValue("");        // sizeType column empty header
+        columnModel.getColumn(5).setHeaderValue("Calories");
+        columnModel.getColumn(6).setHeaderValue("Protein");
+        columnModel.getColumn(7).setHeaderValue("Carbs");
+        columnModel.getColumn(8).setHeaderValue("Fats");
+        columnModel.getColumn(9).setHeaderValue("Recipe?");
+
+        mealsTable.getTableHeader().repaint();
+    }
+
     
     
     /**
@@ -1402,6 +1511,7 @@ public class NewFrame extends javax.swing.JFrame {
     private javax.swing.JPanel Today;
     private javax.swing.JLabel UnitLabel;
     private javax.swing.JTextField brandField;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField calorieField;
     private javax.swing.JTextField carbField;
     private javax.swing.JTextField fatField;
@@ -1410,6 +1520,7 @@ public class NewFrame extends javax.swing.JFrame {
     private javax.swing.JPanel infoPanel2;
     private javax.swing.JPanel infoPanel5;
     private javax.swing.JPanel infoPanel6;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1449,7 +1560,7 @@ public class NewFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
