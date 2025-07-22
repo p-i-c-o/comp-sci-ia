@@ -15,6 +15,6 @@ My Internal Assessment for Computer Science in the IB
 - [ ] Export meal to -external- file (for sharing purposes)
 - [X] Meal object creator
 - [X] Demo Data Creator
-- [ ] Meals table with filter
-- [ ] Meals table search bar functionality
+- [x] Meals table with filter
+- [x] Meals table search bar functionality
 - [ ] Home page (no clue what I'm going to add here...)
